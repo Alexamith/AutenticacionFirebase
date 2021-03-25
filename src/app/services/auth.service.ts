@@ -15,7 +15,13 @@ export class AuthService {
   }
   
   newUser(user:UserModel){
-  
+    const userData = {
+      email: user.email,
+      password: user.password,
+      returnSecureToken:true
+    }
+
+    return this.http.post(`${this.url}accounts:signUp?key=${this.key}`,userData);
   }
   
   login(user:UserModel){
