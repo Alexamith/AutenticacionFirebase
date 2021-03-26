@@ -13,7 +13,7 @@ export class AuthService {
   constructor(private http:HttpClient) { }
 
   logout(){
-  
+    localStorage.removeItem('idToken');
   }
   
   newUser(user:UserModel){
