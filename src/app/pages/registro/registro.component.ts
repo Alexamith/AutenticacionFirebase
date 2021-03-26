@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegistroComponent implements OnInit {
   user: UserModel;
-  recordarme = false;
+    recordarme = false;
   constructor(private service:AuthService, private router:Router) { }
 
   ngOnInit() { 
