@@ -1,4 +1,15 @@
+<div class="row">
 
+  <div class="col-sm-12">
+    <div *ngIf="isError" class="alert alert-danger" role="alert">
+      <h5>{{error}}</h5>
+    </div>
+    <div *ngIf="!isNotError" class="alert alert-success" role="alert">
+      <h5>Se registró con éxito</h5>
+    </div>
+  </div>
+  
+</div>
 <div class="row">
   <hr>
   <div class="col-sm-4">
@@ -33,9 +44,7 @@
 
             </form>
             <hr>
-            <div *ngIf="isError" class="alert alert-danger" role="alert">
-                <h5>{{error}}</h5>
-            </div>
+            
     <!-- <button (click)="guardarLink()" class="btn btn-success">Guardar link</button> -->
   </div>
   <div class="col-sm-8">
@@ -46,19 +55,21 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col" class="tabla-form-title">#</th>
-          <th scope="col"class="tabla-form-title">Code</th>
+          <th scope="col"class="tabla-form-title">Shortcode</th>
+          <th scope="col"class="tabla-form-title">Old Url</th>
+          <th scope="col"class="tabla-form-title">New Url</th>
           <th scope="col"class="tabla-form-title">Visits</th>
-          <th scope="col"class="tabla-form-title">Url old</th>
+          <th scope="col"class="tabla-form-title">Delete</th>
 
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row" class="infotabla-form-title">1</th>
-          <td class="infotabla-form-title">Mark</td>
-          <td class="infotabla-form-title">Otto</td>
-          <td class="infotabla-form-title">@mdo</td>
+        <tr *ngFor="let item of links ">
+          <td class="infotabla-form-title">{{item.codigo}}</td>
+          <td class="infotabla-form-title">{{item.enlaceLargo}}</td>
+          <td  (click)="visitURL(item._id);" ><p class="infotabla-form-title" id="visita">{{item.enlaceCorto}} </p></td>
+          <td class="infotabla-form-title">{{item.cantidadIngresos}}</td>
+          <td class="infotabla-form-title"><button class="btn btn-danger" (click)="delete(item._id)">D</button></td>
         </tr>
        
       </tbody>

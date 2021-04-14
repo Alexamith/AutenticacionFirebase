@@ -15,8 +15,12 @@ export class HomeComponent implements OnInit {
   enlace: LinkModel;
   error:string;
   isError:boolean;
+  isNotError:boolean;
+  links:{};
 
-  constructor(private auth:AuthService, private router:Router, private link:LinksService) { }
+  constructor(private auth:AuthService, private router:Router, private link:LinksService) { 
+    this.getAllLinks();
+  }
 
   ngOnInit() {
     this.enlace = new LinkModel();
@@ -33,14 +37,53 @@ export class HomeComponent implements OnInit {
           return;
     }
 
-    console.log(this.enlace);
     this.link.newLink(this.enlace).subscribe(data => {
       console.log(data);
+      this.isNotError= false;
       this.isError = false;
+      this.getAllLinks();
     },err=>{
-      console.log(err.error);
       this.error = err.error.error;
       this.isError = true;
+    this.isNotError = true;
+
     });
+  }
+  getAllLinks(){
+    this.link.getLink().subscribe(data => {
+       this.isNotError = false;
+      this.isError = false;
+      this.links=data['enlaces'];
+    },err=>{
+      this.error = err.error.error;
+      this.isError = true;
+    this.isNotError = true;
+
+    });
+  }
+
+  visitURL(id:string){
+    this.link.getLinkId(id).subscribe(data => {
+      this.isNotError = false;
+      this.isError = false;
+      this.getAllLinks();
+   },err=>{
+    this.error = err.error.error;
+    this.isError = true;
+    this.isNotError = true;
+
+  });
+  }
+  delete(id:string){
+    this.link.deleteLinkId(id).subscribe(data => {
+      this.isNotError = false;
+      this.isError = false;
+      this.getAllLinks();
+   },err=>{
+    this.error = err.error.error;
+    this.isError = true;
+    this.isNotError = true;
+
+  });
   }
 }

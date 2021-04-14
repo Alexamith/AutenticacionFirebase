@@ -23,4 +23,24 @@ export class LinksService {
       return res;
     }));
   }
+
+  getLink(){
+    return this.http.get(`${this.url}user/dashboard/links`)
+    .pipe(map(res =>{
+      return res;
+    }));
+  }
+
+  getLinkId(id:string){
+    return this.http.get(`${this.url}user/dashboard/linksId?id=${id}`)
+    .pipe(map(res =>{
+      return res;
+    }));
+  }
+  deleteLinkId(id:string){
+    return this.http.delete(`${this.url}user/dashboard/deletelinksId?id=${id}`)
+    .pipe(map(res =>{
+      return res;
+    }));
+  }
 }
