@@ -32,6 +32,10 @@
                 </div>
 
             </form>
+            <hr>
+            <div *ngIf="isError" class="alert alert-danger" role="alert">
+                <h5>{{error}}</h5>
+            </div>
     <!-- <button (click)="guardarLink()" class="btn btn-success">Guardar link</button> -->
   </div>
   <div class="col-sm-8">

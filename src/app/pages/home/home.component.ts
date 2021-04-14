@@ -13,7 +13,9 @@ import { LinkModel } from 'src/app/models/link.model';
 })
 export class HomeComponent implements OnInit {
   enlace: LinkModel;
-  
+  error:string;
+  isError:boolean;
+
   constructor(private auth:AuthService, private router:Router, private link:LinksService) { }
 
   ngOnInit() {
@@ -34,24 +36,11 @@ export class HomeComponent implements OnInit {
     console.log(this.enlace);
     this.link.newLink(this.enlace).subscribe(data => {
       console.log(data);
+      this.isError = false;
+    },err=>{
+      console.log(err.error);
+      this.error = err.error.error;
+      this.isError = true;
     });
   }
-
-  // submitFormLogin(formLogin:NgForm){
-  //   if (formLogin.invalid) {
-  //     return;
-  //   }
-  //   this.service.login(this.user).subscribe(res => {
-  //     console.log(res);
-  //     if (this.recordarme) {
-  //       localStorage.setItem('email',this.user.email);
-  //     }
-  //     this.isError=false;
-  //     this.route.navigateByUrl('/home');
-  //   },err=>{
-  //     this.isError = true;
-  //     this.error = err.error.error.message;
-  //     console.log(err.error.error.message);
-  //   });
-  // }
 }
