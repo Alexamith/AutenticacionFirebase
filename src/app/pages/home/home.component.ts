@@ -32,9 +32,9 @@ export class HomeComponent implements OnInit {
     }
 
     console.log(this.enlace);
-    // this.link.newLink().subscribe(data => {
-    //   console.log(data);
-    // });
+    this.link.newLink(this.enlace).subscribe(data => {
+      console.log(data);
+    });
   }
 
   // submitFormLogin(formLogin:NgForm){
