@@ -1,7 +1,40 @@
+
 <div class="row">
-  <h1>Página de bienvenida</h1>
   <hr>
-  <div class="col-sm-8">
+  <div class="col-sm-4">
+    <form #formLink = "ngForm" (ngSubmit) ="submitFormLink(formLink)" class="login100-form validate-form flex-sb flex-w">
+      <span class="login100-form-title p-b-51">
+        Link register
+      </span>
+
+                <span *ngIf="formLink.submitted && formLink.controls['protocolo'].errors" class="text-danger">Por favor elija el protocolo</span>
+                <select class="input100  m-b-17" name="protocolo" [(ngModel)]="enlace.protocolo" >
+                  <option value="https://">https: //</option>
+                  <option value="http://">http: //</option>
+                </select>
+
+                <span *ngIf="formLink.submitted && formLink.controls['enlace'].errors" class="text-danger">El link es obligatorio</span>
+
+                <div class="wrap-input100">
+                    <input class="input100" 
+                    type="text" 
+                    name="enlace" 
+                    required
+                    [(ngModel)]="enlace.link"
+                    placeholder="Facebook.com">
+                    <span class="focus-input100"></span>
+                </div>
+                
+                <div class="container-login100-form-btn m-t-17">
+                    <button class="login100-form-btn" type="submit">
+                      Guardar link
+                    </button>
+                </div>
+
+            </form>
+    <!-- <button (click)="guardarLink()" class="btn btn-success">Guardar link</button> -->
+  </div>
+  <div class="col-sm-4">
     <button (click)="salir()" class="btn btn-danger">Cerrar sessión</button>
   </div>
 </div>
