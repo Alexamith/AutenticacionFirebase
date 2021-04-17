@@ -4,7 +4,7 @@
     <div *ngIf="isError" class="alert alert-danger" role="alert">
       <h5>{{error}}</h5>
     </div>
-    <div *ngIf="!isNotError" class="alert alert-success" role="alert">
+    <div *ngIf="isNotError" class="alert alert-success" role="alert">
       <h5>Se registró con éxito</h5>
     </div>
   </div>
@@ -52,7 +52,7 @@
       Registers
     </span>
 
-    <table class="table">
+    <table class="table overflow-auto">
       <thead>
         <tr>
           <th scope="col"class="tabla-form-title">Shortcode</th>

@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.enlace = new LinkModel();
     this.enlace.protocolo ="https://";
+    
   }
   salir(){
     this.auth.logout();
@@ -39,21 +40,21 @@ export class HomeComponent implements OnInit {
 
     this.link.newLink(this.enlace).subscribe(data => {
       console.log(data);
-      this.isNotError= false;
+      this.isNotError= true;
       this.isError = false;
       this.getAllLinks();
+      this.enlace.link =" ";
     },err=>{
       this.error = err.error.error;
       this.isError = true;
-    this.isNotError = true;
 
     });
   }
   getAllLinks(){
     this.link.getLink().subscribe(data => {
-       this.isNotError = false;
       this.isError = false;
       this.links=data['enlaces'];
+      console.log(this.links);
     },err=>{
       this.error = err.error.error;
       this.isError = true;
