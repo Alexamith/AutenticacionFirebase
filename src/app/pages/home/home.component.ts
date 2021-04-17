@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   isError:boolean;
   isNotError:boolean;
   links:{};
+  mesagge:string;
 
   constructor(private auth:AuthService, private router:Router, private link:LinksService) { 
     this.getAllLinks();
@@ -43,11 +44,11 @@ export class HomeComponent implements OnInit {
       this.isNotError= true;
       this.isError = false;
       this.getAllLinks();
-      this.enlace.link =" ";
+      this.mesagge = data["message"];
     },err=>{
       this.error = err.error.error;
       this.isError = true;
-
+      this.isNotError= false;
     });
   }
   getAllLinks(){
@@ -58,7 +59,6 @@ export class HomeComponent implements OnInit {
     },err=>{
       this.error = err.error.error;
       this.isError = true;
-    this.isNotError = true;
 
     });
   }
@@ -71,20 +71,19 @@ export class HomeComponent implements OnInit {
    },err=>{
     this.error = err.error.error;
     this.isError = true;
-    this.isNotError = true;
 
   });
   }
   delete(id:string){
     this.link.deleteLinkId(id).subscribe(data => {
-      this.isNotError = false;
+      this.mesagge = data["message"];
+      console.log(this.mesagge);  
+      this.isNotError = true;
       this.isError = false;
       this.getAllLinks();
    },err=>{
     this.error = err.error.error;
     this.isError = true;
-    this.isNotError = true;
-
   });
   }
 }
